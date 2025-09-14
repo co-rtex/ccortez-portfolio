@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Sunny Steps Daycare — Inclusive Care & Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Sunny Steps Daycare offers inclusive, play-based care supporting neurodivergent children and those with IDD. Open Mon–Fri 7:30–5:30 in Elgin, Illinois." />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Sunny Steps Daycare home">
+                <span class="logo-mark" aria-hidden="true">★</span>
+                <span class="logo-text">Sunny Steps Daycare</span>
+            </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+
+            <nav id="site-nav" class="site-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a class="btn btn--small" href="enroll.html">Enroll</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <h1>Inclusive, play-based care where every child shines.</h1>
+                    <p class="lead">
+                        At <strong>Sunny Steps Daycare</strong>, we provide warm, evidence-based care with specialized
+                        support for
+                        children with intellectual & developmental disabilities (IDD) and neurodivergent learners.
+                    </p>
+
+                    <div class="speech-bubble" role="img" aria-label="Welcome message bubble">
+                        <p>“Welcome! We learn, play, and grow together.”</p>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a class="btn btn--primary" href="about.html">Learn About Us</a>
+                        <a class="btn btn--ghost" href="enroll.html">Start Enrollment</a>
+                    </div>
+
+                    <ul class="pill-list" aria-label="Highlights">
+                        <li>Inclusive classrooms</li>
+                        <li>Sensory-friendly spaces</li>
+                        <li>SLP / OT coordination</li>
+                        <li>Care plans with families</li>
+                    </ul>
+                </div>
+
+                <div class="hero-illustration" aria-hidden="true">
+                    <!-- keep playful shapes -->
+                    <div class="shape shape--circle"></div>
+                    <div class="shape shape--triangle"></div>
+                    <div class="shape shape--square"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why families choose us</h2>
+                <div class="grid cards-3">
+                    <article class="card">
+                        <h3>Individualized Support</h3>
+                        <p>We partner with caregivers to develop personalized supports and routines. We welcome
+                            IEPs/IFSPs and collaborate with therapists as families request.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Sensory-Smart Environments</h3>
+                        <p>Quiet corners, visual schedules, flexible seating, noise-reducing options, and predictable
+                            routines help every child regulate and thrive.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Evidence-Based Practices</h3>
+                        <p>We draw from play-based learning, ABA-informed strategies (family-directed), social stories,
+                            and strengths-based communication.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAM PREVIEW -->
+        <section class="section alt">
+            <div class="container">
+                <h2 class="section-title">Programs at a glance</h2>
+                <div class="grid cards-3">
+                    <article class="card">
+                        <h3>Early Learners (18–36 mo)</h3>
+                        <p>Gentle transitions, parallel play, and caregiver-informed sensory routines.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Explorers (3–4 yrs)</h3>
+                        <p>Language play, social-emotional learning, and guided peer interaction.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Pre-K (4–5 yrs)</h3>
+                        <p>Pre-literacy, numeracy, and executive-function games in small groups.</p>
+                    </article>
+                </div>
+                <div class="center mt-24">
+                    <a class="btn btn--primary" href="programs.html">See Full Programs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- “A DAY IN ACTION” VIDEO -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">A day in action</h2>
+                <figure class="card">
+                    <video src="images/kids_playing.mov" controls playsinline preload="metadata"
+                        poster="images/kids_sitting.jpeg" style="width:100%;border-radius:12px;display:block">
+                        Sorry, your browser doesn’t support embedded videos. You can <a
+                            href="images/kids_playing.mov">download the clip</a> instead.
+                    </video>
+                    <figcaption class="lead" style="margin-top:8px;">Play-based learning and sensory-friendly routines
+                        at Sunny Steps Daycare.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">What families say</h2>
+
+                <div class="carousel" role="region" aria-label="Family testimonials">
+                    <button class="carousel-btn prev" aria-label="Previous testimonial">‹</button>
+                    <div class="carousel-track" id="testimonialTrack">
+                        <figure class="testimonial">
+                            <blockquote>“The sensory-friendly routines and visual schedules made drop-off peaceful—our
+                                child feels safe and excited to learn.”</blockquote>
+                            <figcaption>— A.M., Parent of Early Learner</figcaption>
+                        </figure>
+                        <figure class="testimonial">
+                            <blockquote>“Staff collaborate respectfully with our therapist team and keep us in the loop
+                                every week.”</blockquote>
+                            <figcaption>— J.R., Parent of Pre-K</figcaption>
+                        </figure>
+                        <figure class="testimonial">
+                            <blockquote>“Sunny Steps celebrates our child’s strengths and communicates with care. We
+                                feel seen and supported.”</blockquote>
+                            <figcaption>— S.K., Caregiver, Explorers Class</figcaption>
+                        </figure>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Next testimonial">›</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section alt">
+            <div class="container cta">
+                <h2>Ready to visit?</h2>
+                <p>Schedule a tour at <strong>825 mohawk Dr, elgin illinois</strong> or start enrollment.</p>
+                <div>
+                    <a class="btn btn--ghost" href="contact.html">Schedule Tour</a>
+                    <a class="btn btn--primary" href="enroll.html">Enroll Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h3 class="footer-heading">Sunny Steps Daycare</h3>
+                <p>Inclusive, play-based care where every child shines.</p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul class="footer-list">
+                    <li>Address: <strong>825 Mohawk Dr, Elgin Illinois</strong></li>
+                    <li>Phone: <strong>6305509349</strong></li>
+                    <li>Email: <strong>karina.educator@gmail.com</strong></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Hours</h4>
+                <ul class="footer-list">
+                    <li>Mon–Fri: 7:30 am–5:30 pm</li>
+                    <li>Closed: weekends</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <small>© <span id="year"></span> Sunny Steps Daycare · <a href="about.html#accessibility">Accessibility</a>
+                · <a href="contact.html#policies">Policies</a></small>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

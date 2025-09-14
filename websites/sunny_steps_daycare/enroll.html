@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Enroll — Sunny Steps Daycare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Apply to enroll your child at Sunny Steps Daycare." />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html"><span class="logo-mark">★</span><span class="logo-text">Sunny Steps
+                    Daycare</span></a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+                <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span
+                    class="nav-toggle-bar"></span>
+            </button>
+            <nav id="site-nav" class="site-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a class="btn btn--small" href="enroll.html" aria-current="page">Enroll</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="section">
+        <div class="container narrow">
+            <h1>Start Enrollment</h1>
+            <p class="lead">We’re excited to learn about your child. Please complete the form below and we’ll contact
+                you with next steps.</p>
+
+            <form class="form" id="enrollForm" novalidate data-endpoint="https://formspree.io/f/myzwgera"
+                data-success-message="Thank you! Your form was submitted successfully. We’ll contact you within one business day.">
+                <fieldset>
+                    <legend>Caregiver Information</legend>
+                    <label for="parentName">Full Name *</label>
+                    <input id="parentName" name="parentName" type="text" required placeholder="Your name" />
+
+                    <label for="email">Email *</label>
+                    <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+                    <label for="phone">Phone *</label>
+                    <input id="phone" name="phone" type="tel" required placeholder="(###) ###-####" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Child Information</legend>
+                    <label for="childName">Child’s Name *</label>
+                    <input id="childName" name="childName" type="text" required placeholder="Child’s name" />
+
+                    <label for="dob">Date of Birth *</label>
+                    <input id="dob" name="dob" type="date" required />
+
+                    <label for="program">Program Interest *</label>
+                    <select id="program" name="program" required>
+                        <option value="">Select a program</option>
+                        <option>Early Learners (18–36 mo)</option>
+                        <option>Explorers (3–4 yrs)</option>
+                        <option>Pre-K (4–5 yrs)</option>
+                    </select>
+
+                    <label for="supports">Supports / Notes</label>
+                    <textarea id="supports" name="supports" rows="4"
+                        placeholder="Sensory needs, communication preferences, routines, IEP/IFSP notes..."></textarea>
+
+                    <label for="consent">Therapy Collaboration (optional)</label>
+                    <select id="consent" name="consent">
+                        <option>May contact SLP/OT/PT with my consent</option>
+                        <option>Prefer no contact with therapists</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Schedule & Availability</legend>
+                    <label for="schedule">Preferred Days/Times</label>
+                    <input id="schedule" name="schedule" type="text" placeholder="e.g., M/W/F mornings" />
+
+                    <label for="tour">Interested in a tour?</label>
+                    <select id="tour" name="tour">
+                        <option>Yes, please email me</option>
+                        <option>Yes, please call me</option>
+                        <option>No, not now</option>
+                    </select>
+                </fieldset>
+
+                <div class="form-foot">
+                    <button class="btn btn--primary" type="submit">Submit Application</button>
+                    <p class="form-note" id="privacy-note">By submitting, you agree to our <a
+                            href="contact.html#policies">policies & privacy</a>.</p>
+                </div>
+
+                <div class="form-errors" id="formErrors" aria-live="polite"></div>
+                <div class="form-success" id="formSuccess" hidden role="status">Thank you! We’ll be in touch soon.</div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <small>© <span id="year"></span> Sunny Steps Daycare</small>
+        </div>
+    </footer>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
