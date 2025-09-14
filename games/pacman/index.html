@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pac-Man</title>
+    <link rel="stylesheet" href="pacman.css" />
+    <script defer src="pacman.js"></script>
+</head>
+
+<body>
+    <div class="hud">
+        <div class="hud-left">
+            <span id="score">Score: 0</span>
+            <span id="level">Level: 1</span>
+            <span id="dash">Dash: —</span>
+        </div>
+        <div class="hud-center">
+            <button id="btn-restart" class="btn">Restart</button>
+            <button id="btn-pause" class="btn">Pause</button>
+            <label class="select-wrap">
+                Difficulty:
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="hard">Hard</option>
+                    <option value="insane">Insane</option>
+                </select>
+            </label>
+            <label class="select-wrap">
+                Mode:
+                <select id="mode">
+                    <option value="classic" selected>Classic</option>
+                    <option value="dash">Dash (burst with E)</option>
+                    <option value="stealth">Stealth (line-of-sight)</option>
+                </select>
+            </label>
+        </div>
+        <div class="hud-right">
+            <span id="lives" aria-label="lives"></span>
+        </div>
+    </div>
+
+    <main>
+        <canvas id="board" width="608" height="672" aria-label="Pac-Man board"></canvas>
+    </main>
+
+    <!-- Mobile controls -->
+    <div class="touch-controls">
+        <button data-dir="U">▲</button>
+        <div class="h-row">
+            <button data-dir="L">◀</button>
+            <button data-dir="D">▼</button>
+            <button data-dir="R">▶</button>
+        </div>
+    </div>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>

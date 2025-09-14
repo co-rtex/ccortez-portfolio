@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Christian Cortez — Cosmic Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          keyframes: {
+            orbit: { to: { transform: 'rotate(360deg)' } },
+            orbitRev: { to: { transform: 'rotate(-360deg)' } },   // <-- add this
+            spinSlow: { to: { transform: 'rotate(360deg)' } },
+            pulseRing: {
+              '0%': { opacity: .15, transform: 'scale(1)' },
+              '50%': { opacity: .35, transform: 'scale(1.06)' },
+              '100%': { opacity: .15, transform: 'scale(1)' }
+            },
+            twinkle: { '0%,100%': { opacity: .3 }, '50%': { opacity: 1 } },
+            comet: {
+              '0%': { opacity: 0, transform: 'translate(0,0) rotate(var(--angle))' },
+              '10%': { opacity: 1 },
+              '100%': { opacity: 0, transform: 'translate(400px,-400px) rotate(var(--angle))' }
+            }
+          },
+          animation: {
+            orbit: 'orbit var(--orbit) linear infinite',
+            orbitRev: 'orbitRev var(--orbit) linear infinite',     // <-- add this
+            spinSlow: 'spinSlow var(--spin) linear infinite',
+            pulseRing: 'pulseRing 3s ease-in-out infinite',
+            twinkle: 'twinkle var(--dur) linear infinite',
+            comet: 'comet var(--comet) linear infinite var(--delay)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Nice-to-have: pause for users preferring less motion */
+    @media (prefers-reduced-motion: reduce) {
+      [style*="animation:"] {
+        animation: none !important;
+      }
+    }
+
+    /* guaranteed keyframes (independent of Tailwind utilities) */
+    @keyframes orbit {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes orbitRev {
+      to {
+        transform: rotate(-360deg)
+      }
+    }
+  </style>
+
+  <!-- Lucide icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .glow {
+      box-shadow: 0 0 40px rgba(255, 255, 255, .08), inset 0 0 30px rgba(255, 255, 255, .06);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #f7b4ff, #d8cfff, #a8f1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .bg-cosmic {
+      background: linear-gradient(180deg, #0c0c10 0%, #000 60%, #0c0c10 100%);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white bg-cosmic selection:bg-fuchsia-500/30">
+
+  <!-- Starfield -->
+  <div id="starfield" class="pointer-events-none fixed inset-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-fuchsia-500/25 blur-3xl"></div>
+    <div class="absolute -bottom-48 -right-48 h-[28rem] w-[28rem] rounded-full bg-cyan-400/25 blur-3xl"></div>
+    <!-- stars & comets injected by JS -->
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 border-b border-white/10 bg-black/30 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <div class="flex items-center gap-3">
+        <div
+          class="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 text-black">
+          <i data-lucide="rocket" class="h-5 w-5"></i>
+        </div>
+        <div class="leading-tight">
+          <p class="text-sm text-white/60">Portfolio of</p>
+          <p class="text-lg font-semibold tracking-wide">Christian Cortez</p>
+        </div>
+      </div>
+      <nav class="hidden gap-6 md:flex">
+        <a href="#about" class="text-sm text-white/70 hover:text-white">About</a>
+        <a href="#skills" class="text-sm text-white/70 hover:text-white">Skills</a>
+        <a href="#projects" class="text-sm text-white/70 hover:text-white">Projects</a>
+        <a href="#contact" class="text-sm text-white/70 hover:text-white">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero + Orbit system -->
+  <section class="relative mx-auto grid max-w-6xl place-items-center px-6 py-20 md:py-28">
+    <div class="relative w-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 glow">
+      <div
+        class="pointer-events-none absolute inset-x-0 -top-40 h-64 bg-gradient-to-b from-fuchsia-400/10 to-transparent blur-3xl">
+      </div>
+
+      <div class="relative grid gap-6 md:grid-cols-2 md:items-center">
+        <div>
+          <h1 class="text-4xl font-black tracking-tight md:text-6xl">
+            <span class="text-gradient">Christian Cortez</span>
+          </h1>
+          <p class="mt-3 text-lg text-white/80 md:text-xl">CS & DS student at UW–Madison · Class of 2028</p>
+          <p class="mt-4 max-w-xl text-white/70">
+            I build playful games, practical apps, performant websites, and dabble in robotics. Here’s a cosmic map of
+            my work—open a planet to explore a folder of projects.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#projects"
+              class="rounded-xl bg-gradient-to-br from-fuchsia-500 to-purple-600 px-4 py-2 text-sm font-semibold text-black shadow hover:opacity-90">Explore
+              Projects</a>
+            <a href="#about"
+              class="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/10">About
+              Me</a>
+          </div>
+        </div>
+
+        <!-- Orbit system -->
+        <div id="projects" class="relative grid place-items-center p-8">
+          <div
+            class="relative grid h-[420px] w-[420px] place-items-center rounded-full border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950">
+            <!-- Tracks -->
+            <svg id="tracks" class="pointer-events-none absolute inset-0" viewBox="0 0 420 420" width="420"
+              height="420"></svg>
+
+            <!-- Core -->
+            <div
+              class="relative z-10 grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-yellow-300 via-amber-300 to-rose-300 text-black shadow-2xl">
+              <span class="text-center text-[10px] font-bold leading-tight">Project<br />Core</span>
+            </div>
+
+            <!-- Planets -->
+            <div id="planet-root" class="absolute inset-0"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <section id="about" class="relative mx-auto max-w-6xl px-6 py-20">
+    <h2 class="mb-6 text-3xl font-semibold tracking-tight text-white/90 drop-shadow-sm md:text-4xl">About Christian</h2>
+    <p class="text-white/80">I’m a builder who loves mixing clean engineering with playful UI. Whether it’s a quick
+      canvas game, a responsive site, a data-driven app, or a bot with sensors, I learn fast and ship fast. I’m
+      currently exploring optimization, data visualization, and human-centered design.</p>
+  </section>
+
+  <section id="skills" class="relative mx-auto max-w-6xl px-6 py-20">
+    <h2 class="mb-6 text-3xl font-semibold tracking-tight text-white/90 drop-shadow-sm md:text-4xl">Skills &amp; Tools
+    </h2>
+    <ul id="skills-list" class="flex flex-wrap gap-2 text-sm"></ul>
+  </section>
+
+  <section id="contact" class="relative mx-auto max-w-6xl px-6 py-20">
+    <h2 class="mb-6 text-3xl font-semibold tracking-tight text-white/90 drop-shadow-sm md:text-4xl">Get in Touch</h2>
+    <p class="mb-4 max-w-2xl text-white/80">Want to collaborate, see code, or chat about an idea? Open a planet above or
+      reach out below.</p>
+    <div class="flex items-center gap-3">
+      <a class="rounded-xl border border-white/15 bg-white/5 p-2 text-white/80 hover:bg-white/10" href="#"
+        aria-label="GitHub"><i data-lucide="github" class="h-5 w-5"></i></a>
+      <a class="rounded-xl border border-white/15 bg-white/5 p-2 text-white/80 hover:bg-white/10" href="#"
+        aria-label="LinkedIn"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 py-10">
+    <div class="mx-auto max-w-6xl px-6 text-sm text-white/50">
+      <p>© <span id="year"></span> Christian Cortez · Built with Tailwind &amp; vanilla JS</p>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 z-50 hidden">
+    <div data-close class="absolute inset-0 bg-black/70 backdrop-blur"></div>
+    <div class="absolute inset-0 grid place-items-center p-4">
+      <div class="relative w-full max-w-4xl rounded-2xl border border-white/10 bg-zinc-900/90 p-6 shadow-2xl">
+        <button data-close
+          class="absolute right-3 top-3 rounded-full p-2 text-white/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
+          aria-label="Close">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+        <div class="mb-4 flex items-center gap-2">
+          <i data-lucide="rocket" class="h-5 w-5 text-fuchsia-300"></i>
+          <h3 id="modal-title" class="text-xl font-semibold tracking-tight text-white/90 md:text-2xl">Projects</h3>
+        </div>
+        <div id="modal-grid" class="grid gap-4 sm:grid-cols-2"><!-- cards --></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ----------- Data -----------
+    const PROJECTS = {
+      games: [
+        {
+          title: "Pac-Man",
+          blurb: "Classic maze chase remade in JS.",
+          tags: ["HTML", "CSS", "JS"],
+          live: "games/pacman/",
+          code: "https://github.com/you/pacman"
+        },
+        {
+          title: "Wordle",
+          blurb: "Guess the five-letter word in six tries.",
+          tags: ["HTML", "CSS", "JS"],           // ← add tags
+          live: "games/wordle/",
+          code: "https://github.com/you/wordle"
+        },
+        {
+          title: "Blackjack",
+          blurb: "Cards, chips, suspense: reach 21 before the house.",
+          tags: ["HTML", "CSS", "JS"],
+          live: "games/blackjack/",
+          code: "https://github.com/you/blackjack"
+        }
+      ],
+      apps: [
+        { title: "StudyBuddy", blurb: "Flashcards + spaced repetition.", tags: ["React", "IndexedDB"], url: "#" },
+        { title: "MealMap", blurb: "Macro-friendly recipes & grocery lists.", tags: ["React", "API"], url: "#" },
+        { title: "TaskJet", blurb: "Minimal, keyboard-first task manager.", tags: ["TS", "PWA"], url: "#" }
+      ],
+      websites: [
+        { title: "Artfolio", blurb: "Artist portfolio with lazy-loaded galleries.", tags: ["Next.js", "SSR"], url: "#" },
+        { title: "UW Hacks", blurb: "Hackathon landing page with schedule.", tags: ["Tailwind", "a11y"], url: "#" },
+        { title: "DataViz Lab", blurb: "Interactive charts and dashboards.", tags: ["D3", "Charts"], url: "#" }
+      ],
+      robotics: [
+        { title: "LineFollower", blurb: "PID-tuned line follower.", tags: ["C++", "Arduino"], url: "#" },
+        { title: "ArmControl", blurb: "Inverse kinematics demo.", tags: ["Python", "ROS"], url: "#" },
+        { title: "MazeBot", blurb: "Wall-following maze solver.", tags: ["C", "Sensors"], url: "#" }
+      ]
+    };
+
+    const CATEGORIES = [
+      { key: "games", label: "Games", icon: "gamepad-2", hue: "from-pink-400 via-fuchsia-500 to-violet-600", ring: "ring-fuchsia-300/40" },
+      { key: "apps", label: "Apps", icon: "smartphone", hue: "from-teal-300 via-emerald-400 to-cyan-400", ring: "ring-teal-300/40" },
+      { key: "websites", label: "Websites", icon: "globe", hue: "from-orange-300 via-rose-400 to-pink-500", ring: "ring-orange-300/40" },
+      { key: "robotics", label: "Robotics", icon: "bot", hue: "from-lime-300 via-green-400 to-emerald-500", ring: "ring-lime-300/40" }
+    ];
+
+    // ----------- Utils -----------
+    const hashStr = (s) => { let h = 2166136261 >>> 0; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
+    const rng = (seed) => { let x = seed >>> 0; return () => { x = (x * 1664525 + 1013904223) >>> 0; return x / 4294967296; }; };
+    const cap = (s) => s ? s[0].toUpperCase() + s.slice(1) : s;
+
+    // ----------- Tracks + Planets -----------
+    function layoutOrbits() {
+      const bands = [120, 150, 180, 200];
+      const n = CATEGORIES.length;
+      const map = {};
+
+      CATEGORIES.forEach((c, i) => {
+        const r = rng(hashStr(c.key));
+        const rx = bands[i % bands.length] + r() * 10;
+        const ry = rx * (0.72 + r() * 0.20);
+        const angle = (i * 360) / n + r() * 20;
+        const orbitDuration = 12 + r() * 20;              // 12–32s
+        const spin = 8 + r() * 12;                        // icon spin
+        const size = 56 + Math.round(r() * 36);           // 56–92px
+        const dir = r() > 0.5 ? 'rev' : 'fwd';            // CW/CCW
+        const delay = -(r() * orbitDuration).toFixed(2);  // desync start
+        map[c.key] = { rx, ry, angle, orbitDuration, spin, size, dir, delay };
+      });
+
+      return map;
+    }
+
+
+    function buildTracks(layout) {
+      const svg = document.getElementById('tracks');
+      svg.innerHTML = '';
+      const c = 210;
+      Object.values(layout).forEach((cfg, idx) => {
+        const e = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+        e.setAttribute('cx', c); e.setAttribute('cy', c);
+        e.setAttribute('rx', cfg.rx); e.setAttribute('ry', cfg.ry);
+        e.setAttribute('fill', 'none');
+        e.setAttribute('stroke', 'rgba(255,255,255,0.18)');
+        e.setAttribute('stroke-width', '1');
+        const base = 6 + (idx % 3);
+        e.setAttribute('stroke-dasharray', `${base} ${base * 1.6}`);
+        svg.appendChild(e);
+      });
+    }
+
+    function buildPlanets(layout) {
+      const root = document.getElementById('planet-root');
+      root.innerHTML = '';
+
+      CATEGORIES.forEach(cat => {
+        const cfg = layout[cat.key];
+
+        // 1) Static starting angle (NOT animated)
+        const angleWrap = document.createElement('div');
+        angleWrap.className = 'absolute left-1/2 top-1/2';
+        angleWrap.style.transformOrigin = '0 0';
+        angleWrap.style.transform = `rotate(${cfg.angle}deg)`;
+
+        // 2) The rotator does the orbit animation
+        const rotator = document.createElement('div');
+        rotator.style.transformOrigin = '0 0';
+        rotator.style.animation = `${cfg.dir === 'rev' ? 'orbitRev' : 'orbit'} ${cfg.orbitDuration}s linear infinite`;
+        rotator.style.animationDelay = `${cfg.delay}s`;
+
+        // 3) Ellipse scale (applies ONLY to the path, not the planet)
+        const pathScale = document.createElement('div');
+        pathScale.style.transformOrigin = 'left center';
+        const k = (cfg.ry / cfg.rx);
+        pathScale.style.transform = `scaleY(${k.toFixed(6)})`;
+
+        // 4) Move along the (unscaled) x-radius
+        const anchor = document.createElement('div');
+        anchor.style.transform = `translateX(${cfg.rx}px)`;
+        anchor.style.position = 'relative';
+
+        // 5) UN-SCALE wrapper cancels the ellipse scale so the planet is a circle
+        const unscale = document.createElement('div');
+        unscale.style.transformOrigin = 'left center';
+        unscale.style.transform = `scaleY(${(1 / k).toFixed(6)})`;
+
+        // 6) The planet button (its CENTER is placed on the path)
+        const btn = document.createElement('button');
+        const sz = cfg.size;
+        btn.className = 'relative rounded-full p-px ring-2 transition focus:outline-none focus:ring-4 ring-white/20';
+        btn.style.width = `${sz}px`;
+        btn.style.height = `${sz}px`;
+        btn.style.borderRadius = '50%';
+        // center the button on the orbit point:
+        btn.style.position = 'absolute';
+        btn.style.left = '0';
+        btn.style.top = '0';
+        btn.style.transform = 'translate(-50%, -50%)';
+
+        btn.setAttribute('aria-label', `${cat.label} projects`);
+        btn.innerHTML = `
+      <div class="relative grid h-full w-full place-items-center rounded-full bg-gradient-to-br ${cat.hue} glow">
+        <i data-lucide="${cat.icon}" class="h-5 w-5 text-black/80 drop-shadow animate-spinSlow" style="--spin:${cfg.spin}s"></i>
+        <i data-lucide="folder" class="absolute right-1 top-1 h-4 w-4 text-white/90"></i>
+        <span class="absolute -bottom-5 select-none text-[9px] font-medium tracking-wide text-white/80 md:text-xs">${cat.label}</span>
+      </div>
+      <span class="pointer-events-none absolute inset-0 rounded-full ring-1 ring-white/10"></span>
+      <span class="pointer-events-none absolute -inset-1 rounded-full border border-white/5 animate-pulseRing"></span>
+    `;
+        btn.addEventListener('click', () => openModal(cat.key));
+
+        // assemble
+        unscale.appendChild(btn);
+        anchor.appendChild(unscale);
+        pathScale.appendChild(anchor);
+        rotator.appendChild(pathScale);
+        angleWrap.appendChild(rotator);
+        root.appendChild(angleWrap);
+      });
+
+      lucide.createIcons();
+    }
+
+
+    // ----------- Modal -----------
+    const modal = document.getElementById('modal');
+    const modalGrid = document.getElementById('modal-grid');
+    const modalTitle = document.getElementById('modal-title');
+
+    function resolveLiveUrl(u) {
+      if (!u) return "#";
+      try {
+        // absolute? leave it
+        return new URL(u).href;
+      } catch {
+        // relative: resolve against current page, but strip leading "/" for GH Pages project sites
+        const cleaned = (u[0] === "/") ? u.slice(1) : u;
+        return new URL(cleaned, document.baseURI).href;
+      }
+    }
+
+    function openModal(key) {
+      const items = PROJECTS[key] || [];
+      modalTitle.textContent = `${cap(key)} Projects`;
+      modalGrid.innerHTML = items.map((p, i) => {
+        const playHref = resolveLiveUrl(p.live || p.url || "#");
+        const codeHref = p.code || null;
+        return `
+      <div class="group rounded-xl border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/[0.08]">
+        <div class="flex items-start justify-between gap-2">
+          <h4 class="text-lg font-medium text-white/90">${p.title}</h4>
+          <span class="text-xs text-white/50">${i + 1}</span>
+        </div>
+        <p class="mt-1 text-sm text-white/70">${p.blurb}</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+${(p.tags ?? []).map(t => `<span class="rounded-full bg-white/10 px-2 py-1 text-xs text-white/80">${t}</span>`).join('')}        </div>
+        <div class="mt-4 flex gap-2">
+          <a href="${playHref}" target="_blank" rel="noreferrer"
+             class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 px-3 py-1.5 text-sm font-semibold text-black hover:opacity-90">
+            <i data-lucide="play" class="h-4 w-4"></i> Play
+          </a>
+          ${codeHref ? `
+            <a href="${codeHref}" target="_blank" rel="noreferrer"
+               class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-sm text-white/90 hover:bg-white/10">
+              <i data-lucide="github" class="h-4 w-4"></i> Code
+            </a>` : ``}
+        </div>
+      </div>
+    `;
+      }).join('');
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeModal() { modal.classList.add('hidden'); }
+    modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+
+    // ----------- Starfield -----------
+    function starfield() {
+      const root = document.getElementById('starfield');
+      const W = window.innerWidth, H = window.innerHeight;
+      const make = (cls, styles) => { const el = document.createElement('span'); el.className = cls; Object.assign(el.style, styles); root.appendChild(el); };
+      // stars
+      for (let i = 0; i < 220; i++) {
+        const size = Math.random() * 2 + .6;
+        make('absolute rounded-full bg-white animate-twinkle',
+          {
+            width: `${size}px`, height: `${size}px`, left: `${Math.random() * W}px`, top: `${Math.random() * H}px`,
+            opacity: (0.35 + Math.random() * 0.65).toFixed(2), '--dur': `${4 + Math.random() * 6}s`
+          });
+      }
+      // comets
+      for (let i = 0; i < 5; i++) {
+        make('absolute h-[2px] w-16 origin-left rounded-full bg-white/70 shadow-[0_0_20px_rgba(255,255,255,0.5)] animate-comet',
+          {
+            left: `${Math.random() * W}px`, top: `${Math.random() * H}px`, '--angle': `${-45 + Math.random() * 20}deg`,
+            '--comet': `${6 + Math.random() * 6}s`, '--delay': `${Math.random() * 8}s`
+          });
+      }
+    }
+
+    // ----------- Skills -----------
+    const SKILLS = ["JavaScript", "TypeScript", "React", "Tailwind", "Node", "Python", "C/C++", "Java", "HTML5 Canvas", "D3", "Git", "Arduino", "ROS", "SQL", "Unit Testing"];
+    function renderSkills() {
+      const ul = document.getElementById('skills-list');
+      ul.innerHTML = SKILLS.map(s => `<li class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/80">${s}</li>`).join('');
+    }
+
+    // ----------- Init -----------
+    (function init() {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      starfield();
+      renderSkills();
+
+      const layout = layoutOrbits();
+      buildTracks(layout);
+      buildPlanets(layout);
+      lucide.createIcons();
+    })();
+
+    // Rebuild layout on window resize so spacing stays clean
+    let _resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(_resizeTimer);
+      _resizeTimer = setTimeout(() => {
+        const layout = layoutOrbits();
+        buildTracks(layout);
+        buildPlanets(layout);
+        lucide.createIcons();
+      }, 120);
+    });
+  </script>
+
+</body>
+
+</html>
