@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <title>Christian Cortez — Cosmic Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -13,7 +14,7 @@
         extend: {
           keyframes: {
             orbit: { to: { transform: 'rotate(360deg)' } },
-            orbitRev: { to: { transform: 'rotate(-360deg)' } },   // <-- add this
+            orbitRev: { to: { transform: 'rotate(-360deg)' } },
             spinSlow: { to: { transform: 'rotate(360deg)' } },
             pulseRing: {
               '0%': { opacity: .15, transform: 'scale(1)' },
@@ -29,7 +30,7 @@
           },
           animation: {
             orbit: 'orbit var(--orbit) linear infinite',
-            orbitRev: 'orbitRev var(--orbit) linear infinite',     // <-- add this
+            orbitRev: 'orbitRev var(--orbit) linear infinite',
             spinSlow: 'spinSlow var(--spin) linear infinite',
             pulseRing: 'pulseRing 3s ease-in-out infinite',
             twinkle: 'twinkle var(--dur) linear infinite',
@@ -39,15 +40,14 @@
       }
     }
   </script>
+
   <style>
-    /* Nice-to-have: pause for users preferring less motion */
     @media (prefers-reduced-motion: reduce) {
       [style*="animation:"] {
         animation: none !important;
       }
     }
 
-    /* guaranteed keyframes (independent of Tailwind utilities) */
     @keyframes orbit {
       to {
         transform: rotate(360deg)
@@ -59,11 +59,7 @@
         transform: rotate(-360deg)
       }
     }
-  </style>
 
-  <!-- Lucide icons (CDN) -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
     .glow {
       box-shadow: 0 0 40px rgba(255, 255, 255, .08), inset 0 0 30px rgba(255, 255, 255, .06);
     }
@@ -79,6 +75,9 @@
       background: linear-gradient(180deg, #0c0c10 0%, #000 60%, #0c0c10 100%);
     }
   </style>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="min-h-screen text-white bg-cosmic selection:bg-fuchsia-500/30">
@@ -87,7 +86,6 @@
   <div id="starfield" class="pointer-events-none fixed inset-0 overflow-hidden">
     <div class="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-fuchsia-500/25 blur-3xl"></div>
     <div class="absolute -bottom-48 -right-48 h-[28rem] w-[28rem] rounded-full bg-cyan-400/25 blur-3xl"></div>
-    <!-- stars & comets injected by JS -->
   </div>
 
   <!-- Header -->
@@ -113,7 +111,7 @@
   </header>
 
   <!-- Hero + Orbit system -->
-  <section class="relative mx-auto grid max-w-6xl place-items-center px-6 py-20 md:py-28">
+  <section id="projects" class="relative mx-auto grid max-w-6xl place-items-center px-6 py-20 md:py-28">
     <div class="relative w-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 glow">
       <div
         class="pointer-events-none absolute inset-x-0 -top-40 h-64 bg-gradient-to-b from-fuchsia-400/10 to-transparent blur-3xl">
@@ -126,8 +124,8 @@
           </h1>
           <p class="mt-3 text-lg text-white/80 md:text-xl">CS & DS student at UW–Madison · Class of 2028</p>
           <p class="mt-4 max-w-xl text-white/70">
-            I build playful games, practical apps, performant websites, and dabble in robotics. Here’s a cosmic map of
-            my work—open a planet to explore a folder of projects.
+            I build playful games, practical apps, performant websites, and dabble in robotics. Open a planet to
+            explore.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="#projects"
@@ -140,7 +138,7 @@
         </div>
 
         <!-- Orbit system -->
-        <div id="projects" class="relative grid place-items-center p-8">
+        <div class="relative grid place-items-center p-8">
           <div
             class="relative grid h-[420px] w-[420px] place-items-center rounded-full border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950">
             <!-- Tracks -->
@@ -154,7 +152,7 @@
             </div>
 
             <!-- Planets -->
-            <div id="planet-root" class="absolute inset-0"></div>
+            <div id="planet-root" class="absolute inset-0 z-20"></div>
           </div>
         </div>
       </div>
@@ -164,9 +162,8 @@
   <!-- Sections -->
   <section id="about" class="relative mx-auto max-w-6xl px-6 py-20">
     <h2 class="mb-6 text-3xl font-semibold tracking-tight text-white/90 drop-shadow-sm md:text-4xl">About Christian</h2>
-    <p class="text-white/80">I’m a builder who loves mixing clean engineering with playful UI. Whether it’s a quick
-      canvas game, a responsive site, a data-driven app, or a bot with sensors, I learn fast and ship fast. I’m
-      currently exploring optimization, data visualization, and human-centered design.</p>
+    <p class="text-white/80">Early-career software builder with a bias for shipping—tools from AI recipe generation to
+      education games and city resource portals.</p>
   </section>
 
   <section id="skills" class="relative mx-auto max-w-6xl px-6 py-20">
@@ -180,10 +177,14 @@
     <p class="mb-4 max-w-2xl text-white/80">Want to collaborate, see code, or chat about an idea? Open a planet above or
       reach out below.</p>
     <div class="flex items-center gap-3">
-      <a class="rounded-xl border border-white/15 bg-white/5 p-2 text-white/80 hover:bg-white/10" href="#"
-        aria-label="GitHub"><i data-lucide="github" class="h-5 w-5"></i></a>
-      <a class="rounded-xl border border-white/15 bg-white/5 p-2 text-white/80 hover:bg-white/10" href="#"
-        aria-label="LinkedIn"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
+      <a class="rounded-xl border border-white/15 bg-white/5 p-2 text-white/80 hover:bg-white/10"
+        href="https://github.com/co-rtex" target="_blank" rel="noreferrer" aria-label="GitHub"><i data-lucide="github"
+          class="h-5 w-5"></i></a>
+      <a class="rounded-xl border border-white/15 bg-white/5 p-2 text-white/80 hover:bg-white/10"
+        href="https://linkedin.com/in/christiancortez" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i
+          data-lucide="linkedin" class="h-5 w-5"></i></a>
+      <a class="rounded-xl border border-white/15 bg-white/5 p-2 text-white/80 hover:bg-white/10"
+        href="mailto:ccortez6@wisc.edu" aria-label="Email"><i data-lucide="mail" class="h-5 w-5"></i></a>
     </div>
   </section>
 
@@ -207,93 +208,154 @@
           <i data-lucide="rocket" class="h-5 w-5 text-fuchsia-300"></i>
           <h3 id="modal-title" class="text-xl font-semibold tracking-tight text-white/90 md:text-2xl">Projects</h3>
         </div>
-        <div id="modal-grid" class="grid gap-4 sm:grid-cols-2"><!-- cards --></div>
+        <div id="modal-grid" class="grid gap-4 sm:grid-cols-2"></div>
       </div>
     </div>
   </div>
 
   <script>
-    // ----------- Data -----------
+    // ---------- Data ----------
     const PROJECTS = {
-      games: [
+      experience: [
         {
-          title: "Pac-Man",
-          blurb: "Classic maze chase remade in JS.",
-          tags: ["HTML", "CSS", "JS"],
-          live: "games/pacman/",
-          code: "https://github.com/you/pacman"
+          org: "Code Ninjas",
+          role: "Sensei (Instructor)",
+          dates: "2025–Present · Elgin, IL",
+          blurb: "Hands-on instruction in Scratch, MakeCode, Unity; built starter kits and an AI mini-course.",
+          tags: ["Teaching", "Unity", "MakeCode", "Curriculum"],
+          bullets: [
+            "Teach 30+ students/week; algorithms, debugging, version control.",
+            "6-week AI mini-course; 92% parent satisfaction; +28% project speed.",
+            "Starter kits (Wordle, platformer) + rubrics cut onboarding ~35%."
+          ],
+          links: [{ label: "Org", href: "https://www.codeninjas.com/" }]
         },
         {
-          title: "Wordle",
-          blurb: "Guess the five-letter word in six tries.",
-          tags: ["HTML", "CSS", "JS"],           // ← add tags
-          live: "games/wordle/",
-          code: "https://github.com/you/wordle"
+          org: "HLR Engineering",
+          role: "Engineering Intern",
+          dates: "May–Aug 2024 · Elgin, IL",
+          blurb: "Automated survey→CAD handoffs; improved stakeholder communication.",
+          tags: ["Python", "Excel", "Process"],
+          bullets: [
+            "Standardized survey→CAD exports; ~40% manual reformat reduction.",
+            "Weekly stakeholder digest improved on-time RFIs ~70%→~90%.",
+            "Proposed handoff checklist; cut a revision cycle on pilot."
+          ],
+          links: [{ label: "Company", href: "https://www.hlrengineering.com/" }]
         },
         {
-          title: "Blackjack",
-          blurb: "Cards, chips, suspense: reach 21 before the house.",
-          tags: ["HTML", "CSS", "JS"],
-          live: "games/blackjack/",
-          code: "https://github.com/you/blackjack"
+          org: "Mathnasium",
+          role: "Lead Instructor",
+          dates: "2021–2024 · South Barrington, IL",
+          blurb: "Led K–12 tutoring; improved retention and ops.",
+          tags: ["Leadership", "Scheduling", "Algebra/Precalc"],
+          bullets: [
+            "Avg gains: +1–2 grade levels in ~3 months.",
+            "Trained/scheduled 15+ instructors; parent-SMS loop +12% retention.",
+            "Optimized closing checklist; −20 min/shift."
+          ],
+          links: [{ label: "Org", href: "https://www.mathnasium.com/" }]
+        },
+        {
+          org: "Cortez Painter (Family Business)",
+          role: "Operations Manager",
+          dates: "2017–Present · Elgin, IL",
+          blurb: "Scheduling, payroll, vendors; lightweight CRM + SEO.",
+          tags: ["Ops", "CRM", "SEO"],
+          bullets: [
+            "Airtable CRM + templates; +18% bid close rate.",
+            "Google Business + referrals; ~25% YoY inbound growth."
+          ]
         }
       ],
+
       apps: [
-        { title: "StudyBuddy", blurb: "Flashcards + spaced repetition.", tags: ["React", "IndexedDB"], url: "#" },
-        { title: "MealMap", blurb: "Macro-friendly recipes & grocery lists.", tags: ["React", "API"], url: "#" },
-        { title: "TaskJet", blurb: "Minimal, keyboard-first task manager.", tags: ["TS", "PWA"], url: "#" }
+        {
+          title: "Plate Mate (MVP)",
+          blurb: "AI recipe generator with pantry matching, nutrition, and substitutions.",
+          tags: ["Python", "FastAPI", "pandas", "NLU"],
+          live: "#",
+          code: "#",
+          details: [
+            "Ingredient entity extraction + vectorized pantry match.",
+            "Prompt-chained steps; target <500ms for cached requests."
+          ]
+        },
+        {
+          title: "Tiny Backtester (WIP)",
+          blurb: "Backtests momentum vs. mean-reversion on SPY/large caps (2005–2025).",
+          tags: ["Python", "NumPy", "matplotlib"],
+          live: "#",
+          code: "#",
+          details: ["Outputs CAGR, Sharpe, Max DD; equity & drawdown charts."]
+        }
       ],
+
       websites: [
         {
+          title: "Elgin Help Hub",
+          blurb: "City resource finder (food, housing, legal, mental health). Lighthouse 95+.",
+          tags: ["HTML", "CSS", "JS", "Tailwind"],
+          live: "websites/elgin_help_hub/",   // place your demo here
+          code: "#",
+          details: ["Full-text search, tags, intake links; ~1,500 local visits in Q1."]
+        },
+        {
           title: "Sunny Steps Daycare",
-          blurb: "A simple marketing site for a local daycare.",
+          blurb: "Responsive marketing site; forms + fast replies.",
           tags: ["HTML", "CSS", "JS"],
           live: "websites/sunny_steps_daycare/",
-          code: "https://github.com/co-rtex/ccortez-portfolio/tree/main/websites/sunny_steps_daycare"
-        },
-        { title: "DataViz Lab", blurb: "Interactive charts and dashboards.", tags: ["D3", "Charts"], url: "#" }
+          code: "https://github.com/co-rtex/ccortez-portfolio/tree/main/websites/sunny_steps_daycare",
+          details: ["Halved inquiry→response time (~50%)."]
+        }
       ],
+
+      games: [
+        { title: "Wordle", blurb: "Guess the five-letter word in six tries.", tags: ["HTML", "CSS", "JS"], live: "games/wordle/", code: "https://github.com/co-rtex/wordle" },
+        { title: "Pac-Man", blurb: "Classic maze chase remade in JS.", tags: ["HTML", "CSS", "JS"], live: "games/pacman/", code: "https://github.com/co-rtex/pacman" },
+        { title: "Blackjack", blurb: "Reach 21 before the dealer.", tags: ["HTML", "CSS", "JS"], live: "games/blackjack/", code: "https://github.com/co-rtex/blackjack" },
+        {
+          title: "Teaching Games Portfolio", blurb: "Starters used with 120+ students.", tags: ["Loops", "Arrays", "State"], live: "#", code: "#",
+          details: ["Starters + worksheets cut setup ~30%; higher completion rates."]
+        }
+      ],
+
       robotics: [
-        { title: "LineFollower", blurb: "PID-tuned line follower.", tags: ["C++", "Arduino"], url: "#" },
-        { title: "ArmControl", blurb: "Inverse kinematics demo.", tags: ["Python", "ROS"], url: "#" },
-        { title: "MazeBot", blurb: "Wall-following maze solver.", tags: ["C", "Sensors"], url: "#" }
+        { title: "Ping-Pong Return Arm (HS)", blurb: "3D-printed linkage + heuristics to time a return.", tags: ["CAD", "3D Print", "NEMA-17"], live: "#", code: "#", details: ["Simple CV/physics heuristics; adjustable linkage."] },
+        { title: "Desk Roomba (HS)", blurb: "Palm-size cleaner with cliff/obstacle sensors.", tags: ["Embedded", "Firmware", "Li-ion"], live: "#", code: "#", details: ["20+ min runtime; custom chassis + drivers."] }
       ]
     };
 
     const CATEGORIES = [
+      { key: "experience", label: "Experience", icon: "briefcase-business", hue: "from-amber-300 via-orange-400 to-rose-400", ring: "ring-amber-300/40" },
       { key: "games", label: "Games", icon: "gamepad-2", hue: "from-pink-400 via-fuchsia-500 to-violet-600", ring: "ring-fuchsia-300/40" },
       { key: "apps", label: "Apps", icon: "smartphone", hue: "from-teal-300 via-emerald-400 to-cyan-400", ring: "ring-teal-300/40" },
       { key: "websites", label: "Websites", icon: "globe", hue: "from-orange-300 via-rose-400 to-pink-500", ring: "ring-orange-300/40" },
       { key: "robotics", label: "Robotics", icon: "bot", hue: "from-lime-300 via-green-400 to-emerald-500", ring: "ring-lime-300/40" }
     ];
 
-    // ----------- Utils -----------
+    // ---------- Utils ----------
     const hashStr = (s) => { let h = 2166136261 >>> 0; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
     const rng = (seed) => { let x = seed >>> 0; return () => { x = (x * 1664525 + 1013904223) >>> 0; return x / 4294967296; }; };
     const cap = (s) => s ? s[0].toUpperCase() + s.slice(1) : s;
 
-    // ----------- Tracks + Planets -----------
+    // ---------- Tracks + Planets ----------
     function layoutOrbits() {
-      const bands = [120, 150, 180, 200];
-      const n = CATEGORIES.length;
-      const map = {};
-
+      const bands = [120, 150, 180, 200], n = CATEGORIES.length, map = {};
       CATEGORIES.forEach((c, i) => {
         const r = rng(hashStr(c.key));
         const rx = bands[i % bands.length] + r() * 10;
         const ry = rx * (0.72 + r() * 0.20);
         const angle = (i * 360) / n + r() * 20;
-        const orbitDuration = 12 + r() * 20;              // 12–32s
-        const spin = 8 + r() * 12;                        // icon spin
-        const size = 56 + Math.round(r() * 36);           // 56–92px
-        const dir = r() > 0.5 ? 'rev' : 'fwd';            // CW/CCW
-        const delay = -(r() * orbitDuration).toFixed(2);  // desync start
+        const orbitDuration = 12 + r() * 20;
+        const spin = 8 + r() * 12;
+        const size = 56 + Math.round(r() * 36);
+        const dir = r() > 0.5 ? 'rev' : 'fwd';
+        const delay = -(r() * orbitDuration).toFixed(2);
         map[c.key] = { rx, ry, angle, orbitDuration, spin, size, dir, delay };
       });
-
       return map;
     }
-
 
     function buildTracks(layout) {
       const svg = document.getElementById('tracks');
@@ -319,60 +381,49 @@
       CATEGORIES.forEach(cat => {
         const cfg = layout[cat.key];
 
-        // 1) Static starting angle (NOT animated)
         const angleWrap = document.createElement('div');
         angleWrap.className = 'absolute left-1/2 top-1/2';
         angleWrap.style.transformOrigin = '0 0';
         angleWrap.style.transform = `rotate(${cfg.angle}deg)`;
 
-        // 2) The rotator does the orbit animation
         const rotator = document.createElement('div');
         rotator.style.transformOrigin = '0 0';
         rotator.style.animation = `${cfg.dir === 'rev' ? 'orbitRev' : 'orbit'} ${cfg.orbitDuration}s linear infinite`;
         rotator.style.animationDelay = `${cfg.delay}s`;
 
-        // 3) Ellipse scale (applies ONLY to the path, not the planet)
         const pathScale = document.createElement('div');
         pathScale.style.transformOrigin = 'left center';
         const k = (cfg.ry / cfg.rx);
         pathScale.style.transform = `scaleY(${k.toFixed(6)})`;
 
-        // 4) Move along the (unscaled) x-radius
         const anchor = document.createElement('div');
         anchor.style.transform = `translateX(${cfg.rx}px)`;
         anchor.style.position = 'relative';
 
-        // 5) UN-SCALE wrapper cancels the ellipse scale so the planet is a circle
         const unscale = document.createElement('div');
         unscale.style.transformOrigin = 'left center';
         unscale.style.transform = `scaleY(${(1 / k).toFixed(6)})`;
 
-        // 6) The planet button (its CENTER is placed on the path)
         const btn = document.createElement('button');
         const sz = cfg.size;
         btn.className = 'relative rounded-full p-px ring-2 transition focus:outline-none focus:ring-4 ring-white/20';
         btn.style.width = `${sz}px`;
         btn.style.height = `${sz}px`;
-        btn.style.borderRadius = '50%';
-        // center the button on the orbit point:
         btn.style.position = 'absolute';
-        btn.style.left = '0';
-        btn.style.top = '0';
-        btn.style.transform = 'translate(-50%, -50%)';
-
+        btn.style.left = '0'; btn.style.top = '0';
+        btn.style.transform = 'translate(-50%,-50%)';
         btn.setAttribute('aria-label', `${cat.label} projects`);
         btn.innerHTML = `
-      <div class="relative grid h-full w-full place-items-center rounded-full bg-gradient-to-br ${cat.hue} glow">
-        <i data-lucide="${cat.icon}" class="h-5 w-5 text-black/80 drop-shadow animate-spinSlow" style="--spin:${cfg.spin}s"></i>
-        <i data-lucide="folder" class="absolute right-1 top-1 h-4 w-4 text-white/90"></i>
-        <span class="absolute -bottom-5 select-none text-[9px] font-medium tracking-wide text-white/80 md:text-xs">${cat.label}</span>
-      </div>
-      <span class="pointer-events-none absolute inset-0 rounded-full ring-1 ring-white/10"></span>
-      <span class="pointer-events-none absolute -inset-1 rounded-full border border-white/5 animate-pulseRing"></span>
-    `;
+          <div class="relative grid h-full w-full place-items-center rounded-full bg-gradient-to-br ${cat.hue} glow">
+            <i data-lucide="${cat.icon}" class="h-5 w-5 text-black/80 drop-shadow animate-spinSlow" style="--spin:${cfg.spin}s"></i>
+            <i data-lucide="folder" class="absolute right-1 top-1 h-4 w-4 text-white/90"></i>
+            <span class="absolute -bottom-5 select-none text-[9px] font-medium tracking-wide text-white/80 md:text-xs">${cat.label}</span>
+          </div>
+          <span class="pointer-events-none absolute inset-0 rounded-full ring-1 ring-white/10"></span>
+          <span class="pointer-events-none absolute -inset-1 rounded-full border border-white/5 animate-pulseRing"></span>
+        `;
         btn.addEventListener('click', () => openModal(cat.key));
 
-        // assemble
         unscale.appendChild(btn);
         anchor.appendChild(unscale);
         pathScale.appendChild(anchor);
@@ -384,19 +435,15 @@
       lucide.createIcons();
     }
 
-
-    // ----------- Modal -----------
+    // ---------- Modal ----------
     const modal = document.getElementById('modal');
     const modalGrid = document.getElementById('modal-grid');
     const modalTitle = document.getElementById('modal-title');
 
     function resolveLiveUrl(u) {
       if (!u) return "#";
-      try {
-        // absolute? leave it
-        return new URL(u).href;
-      } catch {
-        // relative: resolve against current page, but strip leading "/" for GH Pages project sites
+      try { return new URL(u).href; }
+      catch {
         const cleaned = (u[0] === "/") ? u.slice(1) : u;
         return new URL(cleaned, document.baseURI).href;
       }
@@ -404,77 +451,111 @@
 
     function openModal(key) {
       const items = PROJECTS[key] || [];
-      modalTitle.textContent = `${cap(key)} Projects`;
+      const titleMap = { experience: "Experience", games: "Games", apps: "Apps", websites: "Websites", robotics: "Robotics" };
+      modalTitle.textContent = titleMap[key] || (cap(key) + " Projects");
+
+      if (key === "experience") {
+        modalGrid.innerHTML = items.map((job, i) => `
+          <div class="group rounded-xl border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/[0.08]">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <h4 class="text-lg font-semibold text-white/90">${job.role} · <span class="text-white/80">${job.org}</span></h4>
+                <p class="text-xs text-white/60 mt-0.5">${job.dates}</p>
+              </div>
+              <span class="text-xs text-white/50">${i + 1}</span>
+            </div>
+            <p class="mt-2 text-sm text-white/70">${job.blurb}</p>
+            <ul class="mt-3 list-disc pl-5 text-sm text-white/75 space-y-1">
+              ${(job.bullets || []).map(b => `<li>${b}</li>`).join("")}
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2">
+              ${(job.tags || []).map(t => `<span class="rounded-full bg-white/10 px-2 py-1 text-xs text-white/80">${t}</span>`).join("")}
+            </div>
+            ${job.links?.length ? `
+              <div class="mt-4 flex flex-wrap gap-2">
+                ${job.links.map(l => `
+                  <a href="${l.href}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-sm text-white/90 hover:bg-white/10">
+                    <i data-lucide="external-link" class="h-4 w-4"></i>${l.label}
+                  </a>`).join("")}
+              </div>` : ``}
+          </div>
+        `).join("");
+        modal.classList.remove('hidden'); lucide.createIcons(); return;
+      }
+
+      // default card grid
       modalGrid.innerHTML = items.map((p, i) => {
         const playHref = resolveLiveUrl(p.live || p.url || "#");
         const codeHref = p.code || null;
         return `
-      <div class="group rounded-xl border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/[0.08]">
-        <div class="flex items-start justify-between gap-2">
-          <h4 class="text-lg font-medium text-white/90">${p.title}</h4>
-          <span class="text-xs text-white/50">${i + 1}</span>
-        </div>
-        <p class="mt-1 text-sm text-white/70">${p.blurb}</p>
-        <div class="mt-3 flex flex-wrap gap-2">
-${(p.tags ?? []).map(t => `<span class="rounded-full bg-white/10 px-2 py-1 text-xs text-white/80">${t}</span>`).join('')}        </div>
-        <div class="mt-4 flex gap-2">
-          <a href="${playHref}" target="_blank" rel="noreferrer"
-             class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 px-3 py-1.5 text-sm font-semibold text-black hover:opacity-90">
-            <i data-lucide="play" class="h-4 w-4"></i> Play
-          </a>
-          ${codeHref ? `
-            <a href="${codeHref}" target="_blank" rel="noreferrer"
-               class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-sm text-white/90 hover:bg-white/10">
-              <i data-lucide="github" class="h-4 w-4"></i> Code
-            </a>` : ``}
-        </div>
-      </div>
-    `;
+          <div class="group rounded-xl border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/[0.08]">
+            <div class="flex items-start justify-between gap-2">
+              <h4 class="text-lg font-medium text-white/90">${p.title}</h4>
+              <span class="text-xs text-white/50">${i + 1}</span>
+            </div>
+            <p class="mt-1 text-sm text-white/70">${p.blurb}</p>
+            ${(p.details && p.details.length) ? `<ul class="mt-2 list-disc pl-5 text-sm text-white/75 space-y-1">${p.details.map(d => `<li>${d}</li>`).join("")}</ul>` : ""}
+            <div class="mt-3 flex flex-wrap gap-2">
+              ${(p.tags ?? []).map(t => `<span class="rounded-full bg-white/10 px-2 py-1 text-xs text-white/80">${t}</span>`).join('')}
+            </div>
+            <div class="mt-4 flex gap-2">
+              <a href="${playHref}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 px-3 py-1.5 text-sm font-semibold text-black hover:opacity-90">
+                <i data-lucide="play" class="h-4 w-4"></i> Open
+              </a>
+              ${codeHref ? `
+                <a href="${codeHref}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-sm text-white/90 hover:bg-white/10">
+                  <i data-lucide="github" class="h-4 w-4"></i> Code
+                </a>`: ""}
+            </div>
+          </div>
+        `;
       }).join('');
-      modal.classList.remove('hidden');
-      lucide.createIcons();
+      modal.classList.remove('hidden'); lucide.createIcons();
     }
 
     function closeModal() { modal.classList.add('hidden'); }
     modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
 
-    // ----------- Starfield -----------
+    // ---------- Starfield ----------
     function starfield() {
       const root = document.getElementById('starfield');
-      const W = window.innerWidth, H = window.innerHeight;
+      const W = innerWidth, H = innerHeight;
       const make = (cls, styles) => { const el = document.createElement('span'); el.className = cls; Object.assign(el.style, styles); root.appendChild(el); };
-      // stars
       for (let i = 0; i < 220; i++) {
         const size = Math.random() * 2 + .6;
-        make('absolute rounded-full bg-white animate-twinkle',
-          {
-            width: `${size}px`, height: `${size}px`, left: `${Math.random() * W}px`, top: `${Math.random() * H}px`,
-            opacity: (0.35 + Math.random() * 0.65).toFixed(2), '--dur': `${4 + Math.random() * 6}s`
-          });
+        make('absolute rounded-full bg-white animate-twinkle', {
+          width: `${size}px`, height: `${size}px`, left: `${Math.random() * W}px`, top: `${Math.random() * H}px`,
+          opacity: (0.35 + Math.random() * 0.65).toFixed(2), '--dur': `${4 + Math.random() * 6}s`
+        });
       }
-      // comets
       for (let i = 0; i < 5; i++) {
-        make('absolute h-[2px] w-16 origin-left rounded-full bg-white/70 shadow-[0_0_20px_rgba(255,255,255,0.5)] animate-comet',
-          {
-            left: `${Math.random() * W}px`, top: `${Math.random() * H}px`, '--angle': `${-45 + Math.random() * 20}deg`,
-            '--comet': `${6 + Math.random() * 6}s`, '--delay': `${Math.random() * 8}s`
-          });
+        make('absolute h-[2px] w-16 origin-left rounded-full bg-white/70 shadow-[0_0_20px_rgba(255,255,255,0.5)] animate-comet', {
+          left: `${Math.random() * W}px`, top: `${Math.random() * H}px`, '--angle': `${-45 + Math.random() * 20}deg`,
+          '--comet': `${6 + Math.random() * 6}s`, '--delay': `${Math.random() * 8}s`
+        });
       }
     }
 
-    // ----------- Skills -----------
-    const SKILLS = ["JavaScript", "TypeScript", "React", "Tailwind", "Node", "Python", "C/C++", "Java", "HTML5 Canvas", "D3", "Git", "Arduino", "ROS", "SQL", "Unit Testing"];
+    // ---------- Skills ----------
+    const SKILLS = [
+      "Python", "Java", "JavaScript/TypeScript", "HTML5", "CSS3", "SQL",
+      "Flask/FastAPI", "Node.js",
+      "pandas", "NumPy", "scikit-learn", "matplotlib",
+      "SQLite", "PostgreSQL (basic)",
+      "Git/GitHub", "GitHub Actions (CI)", "Docker (basic)",
+      "Tailwind CSS", "VS Code", "Unix shell", "Postman",
+      "Unity", "MakeCode", "CAD/3D printing (basic)", "Sensors & DC motors"
+    ];
     function renderSkills() {
       const ul = document.getElementById('skills-list');
       ul.innerHTML = SKILLS.map(s => `<li class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/80">${s}</li>`).join('');
     }
 
-    // ----------- Init -----------
+    // ---------- Init ----------
     (function init() {
       document.getElementById('year').textContent = new Date().getFullYear();
-      starfield();
-      renderSkills();
+      starfield(); renderSkills();
 
       const layout = layoutOrbits();
       buildTracks(layout);
@@ -482,9 +563,9 @@ ${(p.tags ?? []).map(t => `<span class="rounded-full bg-white/10 px-2 py-1 text-
       lucide.createIcons();
     })();
 
-    // Rebuild layout on window resize so spacing stays clean
+    // Rebuild on resize
     let _resizeTimer;
-    window.addEventListener('resize', () => {
+    addEventListener('resize', () => {
       clearTimeout(_resizeTimer);
       _resizeTimer = setTimeout(() => {
         const layout = layoutOrbits();
@@ -494,7 +575,6 @@ ${(p.tags ?? []).map(t => `<span class="rounded-full bg-white/10 px-2 py-1 text-
       }, 120);
     });
   </script>
-
 </body>
 
 </html>

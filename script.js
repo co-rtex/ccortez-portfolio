@@ -11,7 +11,7 @@ const PROJECTS = {
     { title: "TaskJet", blurb: "Minimal, keyboard-first task manager.", tags: ["TS", "PWA"], url: "#" }
   ],
   websites: [
-    { title: "Artfolio", blurb: "Artist portfolio with lazy-loaded galleries.", tags: ["Next.js", "SSR"], url: "#" },
+    { title: "Sunny Steps Daycare", blurb: "Daycare site with interactive pages.", tags: ["Next.js", "SSR"], url: "#" },
     { title: "UW Hacks", blurb: "Hackathon landing page with schedule.", tags: ["Tailwind", "a11y"], url: "#" },
     { title: "DataViz Lab", blurb: "Interactive charts and dashboards.", tags: ["D3", "Charts"], url: "#" }
   ],

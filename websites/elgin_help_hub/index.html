@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Elgin Help Hub</title>
+    <meta name="description"
+        content="Fast local help directory for Elgin, IL — food, housing, health, legal, crisis, and more." />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='%235b7cff'/><path d='M18 35c8-6 20-6 28 0' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/><circle cx='32' cy='24' r='6' fill='white'/></svg>">
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="title">
+                <div class="logo" aria-hidden="true">🌐</div>
+                <div>
+                    <h1 data-i18n="title">Elgin Help Hub</h1>
+                    <div class="sub" data-i18n="subtitle">
+                        Fast local help for food, housing, health, legal, and city services in <strong>Elgin,
+                            IL</strong>.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topbar">
+                <div class="banner" role="note" aria-label="Crisis information">
+                    <span class="badge red">🚨 <span data-i18n="emergency">Emergencies</span>:
+                        <strong>911</strong></span>
+                    <span class="badge green">🧠 <span data-i18n="mental_health">Mental Health / Suicide</span>:
+                        <strong>988</strong></span>
+                    <span class="badge blue">📞 <span data-i18n="social_services">Social services</span>:
+                        <strong>211</strong></span>
+                </div>
+
+                <div class="lang">
+                    <button id="btnEN" class="btn small ghost" aria-pressed="true">EN</button>
+                    <button id="btnES" class="btn small ghost" aria-pressed="false">ES</button>
+                </div>
+            </div>
+
+            <div class="tools">
+                <label class="search" for="q">
+                    <input id="q" type="search" placeholder="" aria-label="Search resources"
+                        data-i18n-placeholder="search_placeholder" />
+                    <button class="btn" id="clearBtn" type="button" data-i18n="clear">Clear</button>
+                </label>
+                <div style="display:grid; gap:10px">
+                    <button class="btn secondary block" id="resetBtn" type="button" data-i18n="reset_filters">Reset
+                        filters</button>
+                    <button class="btn ghost block" id="printBtn" type="button" data-i18n="print_list">Print
+                        list</button>
+                </div>
+            </div>
+
+            <div class="chips" id="chipbar" aria-label="Filter by category"></div>
+        </header>
+
+        <main>
+            <div class="grid" id="list" role="list"></div>
+            <div id="empty" class="empty" hidden>
+                <span data-i18n="no_matches">No matches. Try different words (e.g., food, rent, legal, clinic) or clear
+                    filters.</span>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <span class="count" id="count">0</span>
+                <span data-i18n="results">result(s)</span>.
+                <span data-i18n="disclaimer">Data may change—call ahead.</span>
+            </div>
+            <div><span data-i18n="last_updated">Last updated</span>: <span id="lastUpdated">Sep 17, 2025</span>.</div>
+        </footer>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="resources.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Register SW only when served via http(s)
+        if (location.protocol.startsWith('http') && 'serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').catch(() => { });
+        }
+    </script>
+</body>
+
+</html>
