@@ -1,4 +1,3 @@
-package bstrotation_02;
 
 import java.util.Objects;
 
@@ -36,7 +35,6 @@ public class BSTRotation<T extends Comparable<T>> extends BinarySearchTree_Place
      *                                  nodes are not initially related as (parent,
      *                                  its child)
      */
-    @Override
     protected void rotate(BinaryNode<T> child, BinaryNode<T> parent)
             throws NullPointerException, IllegalArgumentException {
 

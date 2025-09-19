@@ -1,7 +1,4 @@
-package bstrotation_02;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class BinarySearchTree_Placeholder<T extends Comparable<T>> implements SortedCollection<T> {
 
